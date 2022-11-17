@@ -1,0 +1,146 @@
+.admin--description {
+    padding: 100px;
+}
+
+.register--form {
+    padding: 20px;
+    margin-top: -30px;
+    display: inline-block;
+}
+
+.register {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    padding: 90px -0;
+    margin-left: 50px;
+    margin-bottom: -75px;
+}
+
+.register--form label {
+    font-size: 24px;
+    margin-left: 300px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+ }
+
+ .confirmPassword--box {
+    display: inline-block;
+    margin-left: -111px;
+ }
+
+.register--form input {
+    color: black;
+    margin-top: 50px;
+    display: inline-block;
+    margin-left: -20px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 30px;
+    height: 35px;
+    width: 250px;
+    align-items: center;
+    text-align: center;
+}
+
+.username--box {
+    margin-left: -25px;
+}
+
+.username--box input {
+    font-weight: 600;
+    text-align: center;
+    font-size: 14px;
+}
+
+.email--box input {
+    padding: 2px 4px;
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 50px;
+    text-align: center;
+}
+
+.password--box {
+    margin-top: -150px;
+    margin-left: -20px;
+    margin-bottom: 30px;
+}
+
+.password--box input {
+    font-size: 14px;
+    margin-top: 1px;
+    margin-left: -14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.register--btn {
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 400px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 100px;
+    background-color: white;
+    text-decoration: none;
+    padding: 12px 32px;
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+    border-radius: 200px;
+    transition: all 0.2s;
+}
+
+.register--btn:hover {
+   background-color: #d3e8e3;
+   color: black;
+   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+input[type='text']:focus {
+    outline: none;
+    box-shadow:none !important;
+    border-radius: red;
+  }
+
+.login--link {
+      list-style: none;
+      text-decoration: none;
+      text-align: center;
+      margin-left: 200px;
+      color: white;
+      font-weight: 600;
+      font-size: 24px;
+  }
+
+.already--text {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 250px;
+    margin-bottom: 50px;
+}
+
+.link--to {
+    color: black;
+    list-style: none;
+    text-decoration: underline;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+    margin-left: 420px;
+}
+
+.err-msg {
+    color: red;
+    font-weight: 600;
+    text-align: center;
+    margin-left: 400px;
+    font-size: 20px;
+    margin-top: 30px;
+}

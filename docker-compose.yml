@@ -1,0 +1,57 @@
+version: '3.2'
+services: 
+
+  #: Docker Service for the back-end
+  backend:
+
+    image: sabin2000/electrichouseholds
+
+    build:
+      context: ./backend
+      dockerfile: Dockerfile # Dockerfile to run
+
+    ports: 
+      - "5200:5200"
+
+    volumes: # Volumes for web application to auto reload
+      - /app/node_modules
+
+  database:
+
+    image: mongo
+    restart: always #: Always restart the database if an error occurs
+
+    ports:
+      - 27017:27017
+
+    volumes:
+    
+      - type: volume
+        source: mongodb_data_volume
+        target: /data/db
+        
+    environment: # MongoDB environment, specifies the username and password from the environment variables in config.env
+      MONGO_INITDB_ROOT_USERNAME: process.env.MONGO_USERNAME
+      MONGO_INITDB_ROOT_PASSWORD: process.env.MONGO_PASSWORD
+
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo localhost:27017/eHouseholds --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  frontend:
+    image: sabin2000/eHouseholds-frontend-service
+
+    build:
+      context: './frontend'
+      dockerfile: Dockerfile
+
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - /app/node_modules
+
+volumes:
+  mongodb_data_volume:

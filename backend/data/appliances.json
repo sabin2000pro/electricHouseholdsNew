@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Electric Heater",
+        "description": "Consumes 100Kwh of electricity"
+    },
+
+    {
+        "name": "Washing Machine",
+        "description": "To wash your clothes..."
+    },
+
+    {
+        "name": "Tumble Dryer",
+        "description": "To wash your clothes..."
+    },
+
+    {
+        "name": "4K Television",
+        "description": "Electricity Consuming TV"
+    }
+    
+]

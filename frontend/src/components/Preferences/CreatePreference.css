@@ -1,0 +1,172 @@
+.section--yourpreferences {
+    padding: 96px 0;
+}
+
+.submit--container button {
+   margin-bottom: 100px;
+   text-align: center;
+   margin-top: 25x;
+   margin-left: 420px;
+}
+
+.appliance--box {
+    margin-left: -19px;
+}
+
+.appliance--heading {
+    margin-bottom: 30px;
+}
+
+.morningslot--box {
+    margin-top: 55px;
+    margin-left: -56px;
+}
+
+
+.first--box {
+    margin-left: 120px;
+    margin-top: 30px;
+}
+
+
+.has--box {
+    margin-left: -47px;
+    margin-top: 55px;
+}
+
+.username--box {
+    margin-bottom: 50px;
+    margin-top: 30px;
+    text-align: center;
+    margin-right: 70px;
+}
+
+.latemorning--box {
+    margin-top: 50px;
+    margin-left: -90px;
+}
+
+.morning--lbl {
+    margin-right: 50px;
+}
+
+
+.box {
+    margin-right: 170px;
+}
+
+.afternoon--box {
+    margin-left: -65px;
+    margin-top: 50px;
+}
+
+.viewpreferences--btn {
+    text-align: center;
+    align-items: center;
+    margin-left: 950px;
+    margin-top: 80px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 200px;
+    padding: 16px 32px;
+    border: none;
+    transition: all 0.2s;
+    color: white;
+    background-color: #1e7e68;
+    cursor: pointer;
+    margin-bottom: -50px;
+}
+
+.viewcontainer--btn {
+    margin-bottom: 150px;
+    margin-top: -60px;
+}
+
+.eveningslot--box {
+    margin-top: 50px;
+    margin-left: -42px;
+}
+
+.img--box {
+    margin-top: 50px;
+    margin-left: 22px;
+}
+
+.preferences--card {
+    background-color: #1e7e68;
+    color: #333;
+    border-radius: 15px;
+    padding: 40px 10px;
+    box-shadow: 2px 2px 8px black;
+    text-align: center;
+    width: 50%;
+    margin-left: 600px;
+    margin-top: -50px;
+    margin-bottom: 150px;
+    position: relative;
+}
+
+.preferences--card button {
+    margin-top: 50px;
+}
+
+.appliance--heading {
+    color: white;
+    font-weight: 600;
+    padding: 12px;
+    font-size: 28px;
+}
+
+.delete--btn {
+    padding: 12px 50px;
+    margin-top: 50px;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 200px;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+    background-color: lightgreen;
+}
+
+.delete--header {
+    color: white;
+    margin-top: 40px;
+}
+
+.negotiate--btn {
+    text-decoration: none;
+    border: none;
+    color: black;
+    font-size: 20px;
+    background-color: white;
+    padding: 12px 24px;
+    border-radius: 200px;
+    font-weight: bold;
+    margin-bottom: 40px;
+   
+}
+
+.appliance--img {
+    width: 30%;
+    align-items: center;
+}
+
+.generic--text {
+    color: white;
+    font-weight: 600;
+    font-size: 26px;
+}
+
+.no--preferences {
+    font-size: 27px;
+    font-weight: 600;
+    margin-left: 950px;
+    padding: -20px;
+    margin-top: -35px;
+}
+
+.day--box {
+    margin-left: 60px;
+    margin-top: 40px;
+}
