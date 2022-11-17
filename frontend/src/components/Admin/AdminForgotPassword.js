@@ -15,7 +15,7 @@ import RegisterCard from './RegisterCard';
 import axios from 'axios';
 import './AdminForgotPassword.css'
 
-const AdminForgotPassword = ({match}) => { // Forgot Password Component
+const AdminForgotPassword = () => {
 
     const [emailAddress, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(false);
@@ -37,19 +37,17 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
                 setEmailValid(false);
             }
 
-            // Send POST request to the server
+            
             const {data} = await axios.post(`http://localhost:5200/api/v1/auth/forgot-password`, {emailAddress: emailAddress});
-            console.log(data);
-
             setFormIsValid(true);
             setEmailValid(true);
+
+            return data;
         }
         
         catch(err) {
     
             if(err) {
-                console.error(err);
-
                 throw new Error(err);
             }
     
@@ -58,11 +56,14 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
 
     return (
         <Fragment>
+
+
   <section className = "section--forgotpassword">
 
 <div className = "container grid grid--2-cols">
 
         <RegisterCard>
+
             <h1 className = "heading--primary login">Forgot Password</h1>
             <form id = "forgot--pw" onSubmit = {forgotPasswordSubmitHandler} method = "POST" className = "login--form">
 
@@ -76,7 +77,7 @@ const AdminForgotPassword = ({match}) => { // Forgot Password Component
             <div className = "submit--container">
                 <button className = "login--btn" type = "submit">Submit</button>
             </div>
-            </form>
+    </form>
         
     </RegisterCard>
     

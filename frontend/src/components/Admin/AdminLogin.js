@@ -19,8 +19,9 @@ import RegisterCard from './RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
 
-const AdminLogin = (props) => { // Admin Login Component. Adding comments and updating permissions /// Addingf more core aaa. Added headers on the backend
+const AdminLogin = () => { // Admin Login Component. Adding comments and updating permissions /// Addingf more core aaa. Added headers on the backend
     let history = useHistory();
+
     const [enteredEmail, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(true);
     const [enteredPassword, setPassword] = useState('');
@@ -32,13 +33,12 @@ const AdminLogin = (props) => { // Admin Login Component. Adding comments and up
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
         return checkToken(authToken);
-
     }, []);
 
     const checkToken = (authToken) => { // Verifies the authentication token
 
          if(authToken) { // if there is one already present
-             return history.push('/admin-dashboard'); // Adding heroku public folder
+             return history.push('/admin-dashboard');
          }
     }
 
@@ -48,6 +48,7 @@ const AdminLogin = (props) => { // Admin Login Component. Adding comments and up
     const loginHandler = async (e) => { // Login Handler function to login admin
 
         try {
+
             e.preventDefault();
 
             if(!enteredEmail || !enteredPassword) {
@@ -102,12 +103,11 @@ const AdminLogin = (props) => { // Admin Login Component. Adding comments and up
         catch(error) {
 
             if(error) {
-
                 setFormValid(false);
-                console.error(error);
-
                 throw new Error(error);
             }
+
+            
         }  
     }
 

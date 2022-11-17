@@ -20,7 +20,7 @@ import '../Home/Homepage.css';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
 
-const AdminDashboard = (props) => { // Admin Dashboard Component
+const AdminDashboard = () => { // Admin Dashboard Component
     
     let history = useHistory();
     const [appliances, setAppliances] = useState([]);
@@ -85,7 +85,9 @@ const AdminDashboard = (props) => { // Admin Dashboard Component
     }
 
     const deleteAppliance = (id) => {
+
         try {
+
             axios.delete(`http://localhost:5200/api/v1/appliances/delete-appliance/${id}`, {id: id});
             alert('Appliance Deleted');
         } 

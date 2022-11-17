@@ -5,6 +5,7 @@ import './Modal.css';
 const Modal = (props) => {
 
     return (
+
         <div className = "backdrop" onClick = {props.onClick}>
             <ModalCard className = "modal">
             <header className = "modal__header">
@@ -47,12 +48,13 @@ const Modal = (props) => {
                 {props.showInputs && <input type = "text"  onChange = {(event) => {props.changeHandler(event)}} />}
             </div>
 
+
         </form>
 
     </div>
 
     <footer className = "modal__actions">
-        {props.showDefaultBtn && <button onClick = {props.onBtnClick} className = "modal__btn">OK</button>}
+        {props.showDefaultBtnx && <button onClick = {props.onBtnClick} className = "modal__btn">OK</button>}
         {props.showSubmitBtn && <button type = "submit" className = "modal__btn">Submit</button>}
     </footer>
 

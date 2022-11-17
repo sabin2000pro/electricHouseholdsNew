@@ -11,21 +11,21 @@
 
 
 import React, {useState, Fragment} from 'react';
-import HomepageImg from '../images/homepage/homepageimg.jpg';
-import { Link, useHistory } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import RegisterCard from './RegisterCard';
 import './AdminResetPasswordHome.css';
 import axios from 'axios';
 import AdminResetPasswordHome from './AdminResetPasswordHome';
 
 const AdminResetPassword = ({match}) => {
-    let history = useHistory(); // Used for navigation
+    
     const [password, setNewPassword] = useState('');
     const [newPasswordValid, setNewPasswordValid] = useState(false);
     const [formValid, setFormValid] = useState(false);
 
     const resetPasswordHandler = async (event) => { // Reset Password Handler method to reset admin password
         try {
+
             event.preventDefault();
 
             if(password.trim().length < 3) {
@@ -36,14 +36,13 @@ const AdminResetPassword = ({match}) => {
             // Send PUT request
             const {data} = await axios.put(`http://localhost:5200/api/v1/auth/admin/reset-password/${match.params.resetToken}`, {password});
             alert('Password Updated');
-            console.log(`Password Updated Success`);
+
+            return data.data;
         } 
         
         catch(err) {
 
             if(err) {
-                console.log(`${match.params.resetToken}`)
-
                 setFormValid(false);
                 return console.log(err.message);
             }
@@ -52,6 +51,7 @@ const AdminResetPassword = ({match}) => {
     }
 
     return (
+
         <Fragment>
 
             <AdminResetPasswordHome />
@@ -61,6 +61,7 @@ const AdminResetPassword = ({match}) => {
     <div className = "container grid grid--2-cols">
 
         <RegisterCard>
+
             <h1 className = "heading--primary login">Reset Your Password</h1>
             <form onSubmit = {resetPasswordHandler} className = "login--form">
 
@@ -76,11 +77,12 @@ const AdminResetPassword = ({match}) => {
                 <button className = "resetpassword--btn" type = "submit">Reset</button>
             </div>
 
-            </form>
+        </form>
         
     </RegisterCard>
     
 </div>    
+
 </section>
 
     <footer className = "footer">
@@ -88,7 +90,9 @@ const AdminResetPassword = ({match}) => {
                 <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
             </ul>
      </footer>
-        </Fragment>
+
+
+ </Fragment>
     )
 }
 

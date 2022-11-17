@@ -9,7 +9,6 @@
  * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
  */
 
-
 import React, {Fragment, useState, useEffect} from 'react'
 import Header from '../Header';
 import {useHistory, useLocation} from 'react-router-dom';
@@ -25,11 +24,10 @@ const AdminEditAppliance = (props) => {
 
     const [newDescription, setEditedDescription] = useState('');
     const [appliances, setAppliances] = useState([]);
-    const [appliancesFetched, setAppliancesFetched] = useState(false);
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
-        history.push('/admin-login'); // Redirect to Login
+        return history.push('/admin-login'); // Redirect to Login
         
         return window.location.reload(false);
     };
@@ -39,15 +37,18 @@ const AdminEditAppliance = (props) => {
     }, []);
 
     const fetchApplianceData = async () => {
+
+
         try {
             
             return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
+
                 const applianceData = response.data.appliances;
                 setAppliances(applianceData);
-
-                console.log(`Appliance Data : ${JSON.stringify(applianceData)}`);
+                
                 
             }).catch(err => {
+
                 if(err) {
                     return console.error(err);
                 }
@@ -64,13 +65,14 @@ const AdminEditAppliance = (props) => {
     }
 
     const editDescription = (id) => {
+
         try {
 
-          axios.put(`http://localhost:5200/api/v1/appliances/edit-appliance/${id}`, {id: id, newDescription: newDescription}).then(data => {
-              console.log(data);
+        return axios.put(`http://localhost:5200/api/v1/appliances/edit-appliance/${id}`, {id: id, newDescription: newDescription}).then(data => {
+              return history.push('/home');
           });
-          console.log(`Appliance Updated`);
-          return history.push('/home');
+
+
         } 
         
         catch(error) {
@@ -78,10 +80,13 @@ const AdminEditAppliance = (props) => {
             if(error) {
                 return console.error(error);
             }
+
+            
         }
     }
 
     return (
+        
         <Fragment>
              <Header />
           

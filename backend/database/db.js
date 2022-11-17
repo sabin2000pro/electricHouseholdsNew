@@ -12,12 +12,11 @@
 
 const mongoose = require('mongoose');
 
-
 module.exports.connectDatabase = async () => { // Method to connect to the MongoDB database
     
     try {
 
-        return await mongoose.connect("mongodb+srv://sabin2000:123mini123@cluster0.xcriw.mongodb.net/?retryWrites=true&w=majority").then(conn => {
+        return await mongoose.connect("mongodb+srv://sabin2000:123mini123@cluster0.xcriw.mongodb.net/electricHouseholds?retryWrites=true&w=majority").then(conn => {
             
             if(conn.connection) {
 
@@ -27,8 +26,9 @@ module.exports.connectDatabase = async () => { // Method to connect to the Mongo
             else {
                 console.log('Could not connect to DB. Check your connection URL');
             }
-        })
 
+
+        })
         
     } 
     

@@ -16,7 +16,7 @@ import axios from 'axios';
 import Logo from '../components/images/logo.png';
 import {FaSearch} from 'react-icons/fa';
 
-const Header = (props) => { // Header Component
+const Header = () => { // Header Component
     const [isInLocalStorage, setIsInLocalStorage] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [appliances, setAppliances] = useState([]);
@@ -48,7 +48,8 @@ const Header = (props) => { // Header Component
 
                 const allAppliances = response.data.appliances;
                 setAppliances(allAppliances);
-                console.log(allAppliances);
+
+                return allAppliances;
 
             }).catch(error => {
 

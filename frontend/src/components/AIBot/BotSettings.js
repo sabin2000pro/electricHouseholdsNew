@@ -19,11 +19,11 @@ import HomepageImg from '../images/homepage/homepageimg.jpg';
 import axios from 'axios';
 import Modal from './../../UI/Modal';
 
-
-const BotSettings = (props) => {
+const BotSettings = () => {
 
     const [enteredBotName, setEnteredBotName] = useState('');
     const [enteredVirtualCredits, setEnteredVirtualCredits] = useState("50");
+
     const [enteredBotType, setChosenBotType] = useState('');
     const [enteredBidRange, setEnteredBidRange] = useState('');
     const [enteredBotNumber, setEnteredBotNumber] = useState('');
@@ -33,13 +33,13 @@ const BotSettings = (props) => {
     const [modalShown, setModalShown] = useState({});
 
     useEffect(() => {
-        console.log(`Settings submitted ? `);
-        console.log(settingsSubmitted);
+
     }, [settingsSubmitted])
 
     const submitBotHandler = async (event) => {
 
             try {
+
                 event.preventDefault();
 
                 await axios.post(`http://localhost:5200/api/v1/bot/create-bot`, {name: enteredBotName, botCredits: enteredVirtualCredits, type: enteredBotType, bidRange: enteredBidRange, numberOfBots: enteredBotNumber});
@@ -63,7 +63,6 @@ const BotSettings = (props) => {
             catch(error) {
 
                 if(error) {
-                    console.log(error);
                     throw new Error(error);
                 }
             }
@@ -98,6 +97,8 @@ const BotSettings = (props) => {
             <div className = "container grid grid--2-cols">
                 
                 <RegisterCard>
+
+
                     <h1 className = "heading--primary login">Configure Bot Settings</h1>
 
                     <form onSubmit = {submitBotHandler} className = "login--form">
@@ -144,6 +145,7 @@ const BotSettings = (props) => {
             </div>    
         </section>
 
+
             <footer className = "footer">
                     <ul className = "footer--items">
                         <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 202</li>
@@ -151,6 +153,9 @@ const BotSettings = (props) => {
             </footer>
 
     </Fragment>
+
+
+
 
     };
 

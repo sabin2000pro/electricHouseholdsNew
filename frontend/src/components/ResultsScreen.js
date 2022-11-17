@@ -11,13 +11,12 @@
 
 
 import React, {Fragment, useEffect, useState} from 'react';
-import {useLocation, useHistory} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 const ResultsScreen = (props) => { // The results screen that shows the results at the end of the bidding session rounds
   const location = useLocation();
   const [detailsShown, setDetailsShown] = useState(false);
   const [nextRoundStarted, setNextRoundStarted] = useState(false);
-
 
   const redirect = () => {
 
@@ -33,10 +32,6 @@ const ResultsScreen = (props) => { // The results screen that shows the results 
 
   useEffect(() => {
 
-    if(detailsShown) {
-     // return history.push('/');
-    }
-
   }, [detailsShown])
 
   const startNextRound = () => {
@@ -44,6 +39,8 @@ const ResultsScreen = (props) => { // The results screen that shows the results 
   }
 
   return <Fragment>
+
+  
         <div>
             <h1 style = {{textAlign: 'center', padding: '20px'}}>Round Results</h1>
             <h1 style = {{textAlign: 'center', marginTop: '30px'}}>After round {location.round} </h1>

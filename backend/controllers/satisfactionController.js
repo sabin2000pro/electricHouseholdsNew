@@ -1,10 +1,6 @@
 const Satisfaction = require('../models/satisfactionModel');
 const catchAsync = require('../utils/catchAsync');
 
-const ok = 200;
-const created = 201;
-const badRequest = 400;
-
 module.exports.createSatisfaction = catchAsync(async (request, response, next) => {
     const {satisfaction, reason} = request.body;
 
@@ -16,4 +12,5 @@ module.exports.createSatisfaction = catchAsync(async (request, response, next) =
     await newSatisfaction.save();
 
     return response.status(201).json({status: "Success", message: "Satisfaction Created.."});
+
 })

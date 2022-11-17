@@ -19,8 +19,8 @@ import './CreatePreference.css';
 const PreferencesHome = () => {
 
         return (
-                <Fragment>
-                <Header />
+            <Fragment>
+             <Header />
                 
         <section className = "section--home">
             <div className = "home--grid">

@@ -56,6 +56,7 @@ module.exports.editAppliance = catchAsync(async (request, response, next) => {
     }
 
     if(request.method === 'PUT') {
+        
         await Appliance.findById(id, (error, updatedAppliance) => {
             updatedAppliance.description = newDescription;
             updatedAppliance.save();

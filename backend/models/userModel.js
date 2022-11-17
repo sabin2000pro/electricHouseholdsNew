@@ -72,5 +72,15 @@ const UserSchema = new mongoose.Schema({
 
 });
 
+UserSchema.pre('save', async function(next) {
+
+})
+
+UserSchema.methods.getAuthToken = function() {
+
+}
+
+// Method for comparing login passwords
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User; // Export the model

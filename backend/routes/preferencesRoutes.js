@@ -15,10 +15,6 @@ const preferenceRouter = express.Router();
 const preferenceController = require('../controllers/preferencesController');
 const rateLimit = require('express-rate-limit');
 
-const preferenceRateLimiter = rateLimit({
-    
-});
-
 preferenceRouter.route('/create-preference').post(preferenceController.createPreference);
 preferenceRouter.route('/fetch-preferences').get(preferenceController.fetchAllPreferences);
 preferenceRouter.route('/fetch-preferences/:id').get(preferenceController.getPreferenceByID);

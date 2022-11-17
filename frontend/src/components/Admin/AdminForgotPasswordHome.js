@@ -14,7 +14,6 @@ import React, {Fragment} from 'react';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import AdminForgotPassword from './AdminForgotPassword';
- // Adding heroku
 const AdminForgotPasswordHome = () => { // Forgot Password Home
 
     return (

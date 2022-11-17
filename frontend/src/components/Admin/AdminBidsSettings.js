@@ -19,6 +19,7 @@ import RegisterCard from './RegisterCard';
 import axios from 'axios';
 
 const AdminBidsSettings = () => {
+
     let history = useHistory();
     const [enteredOpeningBid, setEnteredOpeningBid] = useState('');
     const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
@@ -32,18 +33,23 @@ const AdminBidsSettings = () => {
     }
 
     const creditSubmitHandler = async (event) => {
+
         try {
+
             event.preventDefault();
 
             // Send POST request
             const {data} = await axios.post(`http://localhost:5200/api/v1/credits/create-credits`, {openingBid: enteredOpeningBid, virtualCredits: enteredVirtualCredits});
-            alert('Credits Configured');
+            const resData = data.data;
 
-            // Clear Fields
+            alert('Credits Configured');
             setEnteredVirtualCredits("");
             setEnteredOpeningBid('');
 
             setFormValid(true);
+
+            return resData;
+
         } 
         
         catch(error) {
@@ -53,6 +59,8 @@ const AdminBidsSettings = () => {
                 setFormValid(false);
                 return console.error(error);
             }
+
+
         }
     }
    
@@ -84,6 +92,7 @@ const AdminBidsSettings = () => {
         <div className = "container grid grid--2-cols">
 
                 <RegisterCard>
+
                     <h1 className = "heading--primary login">Configure Credits Settings</h1>
 
                     <form onSubmit = {creditSubmitHandler} className = "login--form">
@@ -93,7 +102,6 @@ const AdminBidsSettings = () => {
                         <input value = {enteredVirtualCredits} onChange = {(e) => {setEnteredVirtualCredits(e.target.value)}} placeholder = "Enter Virtual Credits" required id = "virtual_credits" type = "number"/>
                     </div>
 
-                
                     <div className = "submit--container">
                         <button className = "submit--btn" type = "submit">Configure</button>
                     </div>
@@ -103,15 +111,22 @@ const AdminBidsSettings = () => {
             </RegisterCard>
             
         </div>    
+
+
     </section>
 
     <footer className = "footer">
+
         <ul className = "footer--items">
             <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
         </ul>
+
+
     </footer>
   
 </Fragment>
+
+
 
     )
 }

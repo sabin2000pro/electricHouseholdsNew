@@ -14,7 +14,7 @@
 /* eslint-disable no-lone-blocks */
 import React, {useState, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import RegisterCard from '../Admin/RegisterCard';
 import axios from 'axios';
 import Modal from '../../UI/Modal';
@@ -40,7 +40,7 @@ let otherPreferences = [
   let newLastAppliance = [];
   let sanitizedInputs = [];
 
-const CreatePreference = (props) => {
+const CreatePreference = () => {
     const [enteredUsername, setUsername] = useState("");
     const [firstApplianceFound, setFirstApplianceFound] = useState(false);
 
@@ -88,10 +88,6 @@ const CreatePreference = (props) => {
     const [appliancePrefSubmitted, setAppliancePrefSubmitted] = useState(false);
     
     useEffect(() => {
-
-        console.log(`Pref submitted ? `);
-        console.log(preferenceSubmitted);
-
     }, [preferenceSubmitted])
 
 
@@ -278,7 +274,6 @@ const CreatePreference = (props) => {
         catch(error) {
 
             if(error) {
-                console.error(error);
                 throw new Error(error);
             }
         }
@@ -355,8 +350,6 @@ const CreatePreference = (props) => {
         catch(err) {
 
             if(err) {
-                console.error(err);
-
                 throw new Error(err);
             }
         }
@@ -440,7 +433,6 @@ const CreatePreference = (props) => {
             if(error) {
                 const stack = error.stack
 
-                console.error(error.message);
                 console.log(stack);
             }
         }
@@ -450,6 +442,7 @@ const CreatePreference = (props) => {
    const commentInputsHandler = (event) => {
 
        try {
+
             setEnteredCommentTitle(event.target.value);
             setEnteredCommentUsername(event.target.value);
             
@@ -535,6 +528,7 @@ const CreatePreference = (props) => {
             <label className = "issue--lbl" htmlFor = "issue">Select Preferences For {firstOne}
                 <input type = "hidden" value = {chosenAppliance} onSubmit = {() => setChosenAppliance(firstOne)} />
             </label>
+
             </div> 
             
         }) : null}
@@ -626,6 +620,7 @@ const CreatePreference = (props) => {
 
         </div>
 
+
         <div className = "day--box">
 
             <label className = "day--lbl">Day</label>
@@ -676,7 +671,7 @@ const CreatePreference = (props) => {
                     <h2 className = "appliance--heading">{preference.secondPreference}</h2>
                     <h2 className = "appliance--heading">{preference.thirdPreference}</h2>
 
-                    <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference._id}`, state: {preference, firstApplianceData}} }>Negotiate Allocations</Link>
+        <Link className = "negotiate--btn" to = {{pathname: `/fair-negotiations/${preference.id}`, state: {preference, firstApplianceData}} }>Negotiate Allocations</Link>
                     
                     </div>
                 </div>

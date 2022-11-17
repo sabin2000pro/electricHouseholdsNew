@@ -32,19 +32,21 @@ const AdminCreateAppliance = (props) => {
     }
 
     function redirectHome() {
+
         return setTimeout(() => {
             return history.push('/admin-dashboard');
+            
         }, REDIRECT_SECONDS);
+
     }
 
     const createApplianceSubmitHandler = async (e) => {
+
         try {
 
             e.preventDefault();
             
             const {data} = await axios.post(`http://localhost:5200/api/v1/appliances/create-appliance`, {name: enteredName, image: enteredImage, description: enteredDescription});
-            console.log(data);
-
             return redirectHome();
         } 
         
@@ -52,8 +54,6 @@ const AdminCreateAppliance = (props) => {
 
             if(error) {
                 const someError = error.response.data;
-                console.log(someError);
-
                 throw new Error(someError);
             }
         }
@@ -61,7 +61,9 @@ const AdminCreateAppliance = (props) => {
     
 
     return (
-        <Fragment>
+
+    <Fragment>
+
         <Header />
           
           <section className = "section--home">
@@ -75,20 +77,22 @@ const AdminCreateAppliance = (props) => {
           <a className = "btn btn--full mgr-sm" href = "/admin-dashboard">Admin Home</a>
           <a onClick = {logoutHandler} className = "btn btn--outline" href = "/">Logout</a>
   
-          </div>
+        </div>
   
           <div className = "home-img-box">
               <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
           </div>
   
   </div>
-      </section>
+
+ </section>
 
       <section className = "section--login">
 
         <div className = "container grid grid--2-cols">
 
                 <RegisterCard>
+
                     <h1 className = "heading--primary login">Create Appliance</h1>
 
                     <form onSubmit = {createApplianceSubmitHandler} className = "login--form">
@@ -110,17 +114,23 @@ const AdminCreateAppliance = (props) => {
                     </form>
                 
             </RegisterCard>
-            
+
         </div>    
+    
     </section>
 
     <footer className = "footer">
+
         <ul className = "footer--items">
             <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2022</li>
         </ul>
+
+
     </footer>
   
 </Fragment>
+
+
     )
 };
 

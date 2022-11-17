@@ -26,7 +26,6 @@ module.exports.createCredits = catchAsync(async (request, response, next) => {
 
 module.exports.deleteCredits = catchAsync(async (request, response, next) => {
     await Credit.deleteMany();
-
     return response.status(204).json("Credits Deleted");
 
 });

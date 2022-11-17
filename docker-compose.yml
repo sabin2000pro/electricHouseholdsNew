@@ -4,7 +4,7 @@ services:
   #: Docker Service for the back-end
   backend:
 
-    image: sabin2000/electrichouseholds
+    image: sabin2000/ehouseholds-backend-service
 
     build:
       context: ./backend
@@ -15,6 +15,7 @@ services:
 
     volumes: # Volumes for web application to auto reload
       - /app/node_modules
+      - ./backend:/app
 
   database:
 
@@ -25,7 +26,7 @@ services:
       - 27017:27017
 
     volumes:
-    
+
       - type: volume
         source: mongodb_data_volume
         target: /data/db
@@ -41,7 +42,7 @@ services:
       retries: 5
 
   frontend:
-    image: sabin2000/eHouseholds-frontend-service
+    image: sabin2000/ehouseholds-frontend-service
 
     build:
       context: './frontend'
@@ -52,6 +53,7 @@ services:
 
     volumes:
       - /app/node_modules
+      - ./frontend:/app
 
 volumes:
   mongodb_data_volume:

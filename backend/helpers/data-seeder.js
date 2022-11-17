@@ -15,7 +15,7 @@
 const fs = require('fs');
 require('dotenv').config();
 const Timeslots = require('../models/timeslotsModel');
-const Admin = require('../models/userModel');
+const Admin = require('../models/adminModel');
 const Appliance = require('../models/applianceModel');
 const Preference = require('../models/preferencesModel');
 const {connectDatabase} = require('../database/db');

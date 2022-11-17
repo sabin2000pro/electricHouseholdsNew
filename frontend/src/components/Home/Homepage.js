@@ -17,10 +17,9 @@ import PeakElectricityImg from '../images/homepage/peakelectricity.jpg';
 import Electricity from '../images/homepage/electricity2.jpg';
 import Card from '../../UI/Card';
 import {motion, AnimatePresence} from 'framer-motion';
-import LoadBalance from '../images/homepage/loadbalance.jpg';
 import Header from '../Header';
 
-const Homepage = (props) => { // Main Homepage Component
+const Homepage = () => { // Main Homepage Component
     
     return (
 
@@ -28,6 +27,7 @@ const Homepage = (props) => { // Main Homepage Component
             <Header />
 
         <section className = "section--home">
+
                 <div className = "home--grid">
 
                <div className = "home-text-box">
@@ -40,17 +40,12 @@ const Homepage = (props) => { // Main Homepage Component
                 <p className = "home--description">1. Click on the "Your Preferences" link above to start submitting your preferences for the appliances that are currently available. On this page you will be presented with a form where you can select up to 3 timeslot preferences for the presented electrical appliances and the day in which you would like to run your appliances on.</p>
                 <p className = "home--description">2. After you submit your preferences, you can view your hourly timeslot allocations by clicking on the button "View Allocations"</p>
 
-
-
-
-
-                
-            
             </div>
 
             <div className = "home-img-box">
                 <img className = "home--img" alt = "Wind Turbing Image" src = {HomepageImg} />
             </div>
+
         </div>
 
     </section>
@@ -88,6 +83,8 @@ const Homepage = (props) => { // Main Homepage Component
             <h3 className = "heading--tertiary reverse">Problem Solution</h3>
             <p className = "electricity--description reverse">The solution to this problem is to disperse the usage of household appliances by submitting when you would like to run your electrical appliance. However, you can only run your chosen appliance for a maximum of 3 hours per day.</p>
         </Card>
+
+
         </motion.div>
 
         </AnimatePresence>
@@ -107,7 +104,6 @@ const Homepage = (props) => { // Main Homepage Component
         <p className = "load--description reverse">Cutting down on high electricity usage demand within homes worldwide is crucial to make effective use of renewable energy sources. This is to save the environment and tackle climate change without having to buy in unclean electricity from centralised national grids. Utilising electrical appliances all at once throughout the day for long periods consumes a lot of electricity. This increases the price to pay towards electricity and means that it may not be met by renewable sources. This is an issue known as a reduction in load balancing.</p>
     </div>
     
-   
 
     </section>
 

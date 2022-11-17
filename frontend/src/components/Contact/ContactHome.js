@@ -16,9 +16,10 @@ import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import './ContactHome.css'
 import CreateContact from './CreateContact';
 
-const ContactHome = (props) => { // Contact Us Home Page
+const ContactHome = () => { // Contact Us Home Page
 
     return (
+
         <Fragment>
 
          <Header />

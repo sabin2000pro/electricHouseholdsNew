@@ -62,6 +62,7 @@ const adminSchema = new mongoose.Schema({
         default: true,
         select: false
     }
+    
 });
 
 // Hash Password before saving to database

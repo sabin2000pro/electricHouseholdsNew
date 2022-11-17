@@ -22,6 +22,7 @@ const fileUpload = require('express-fileupload');
 const session = require('express-session');
 const morgan = require('morgan');
 const app = express(); 
+
 const port = process.env.PORT || 5200;
 const {connectDatabase} = require('../database/db');
 
@@ -55,10 +56,11 @@ const satisfactionRoutes = require('../routes/satisfactionRoutes');
 connectDatabase();
 
 // 1. Set up middleware
+
 app.use(cors({
     origin: "*",
     methods: ["POST", "PUT", "GET", "DELETE"]
-})) // Use this after the variable declaration
+}))
 
 app.use(express.json());
 app.use(xss());
@@ -67,7 +69,6 @@ app.use(mongoSanitize());
 app.use(fileUpload());
 app.use(hpp());
 app.use(helmet());
-
 
 // 2. Mount the routes
 
@@ -117,6 +118,8 @@ const server = app.listen(port, (err) => {
         else {
             return console.error(`Could not listen for requests : ${err}`);
         }
+
+        
     } 
     
     catch(error) { // Catch error if arises

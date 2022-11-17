@@ -34,7 +34,6 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => {
 
     const newAdmin = new Admin({username, emailAddress, password, confirmPassword});
     await newAdmin.save();
-
     // Send E-mail After Registration
 
     return sendToken(newAdmin, created, response); // Send the JWT Token
@@ -162,6 +161,7 @@ module.exports.fetchAllAdmins = catchAsync(async (request, response, next) => {
 module.exports.deleteAdminAccount = catchAsync(async (request, response, next) => {
 
     if(method === 'DELETE') {
+        
         const id = request.params.id;
 
         if(!id) {
@@ -171,7 +171,6 @@ module.exports.deleteAdminAccount = catchAsync(async (request, response, next) =
         await Admin.findByIdAndDelete(id);
         return response.status(204).json("Admin Account Deleted");
     }   
-
 
 });
 

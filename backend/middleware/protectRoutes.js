@@ -18,6 +18,7 @@ const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 
 module.exports.protect = catchAsync(async (request, response, next) => {
+
     let token; // The token will be stored here
     const authHeader = request.headers.authorization; // The authorization header token in the form of Bearer <token></token>
 
@@ -42,6 +43,8 @@ module.exports.protect = catchAsync(async (request, response, next) => {
             return next(new ErrorResponse(`Invalid Token.`, 401));
         }
     }
+
+    
 });
 
 // Middleware Function to restrict acess (RBAC) to specific users

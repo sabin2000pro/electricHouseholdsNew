@@ -17,8 +17,6 @@ import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
 import Modal from '../UI/Modal';
-import SocialExchange from './SocialExchange/SocialExchange';
-import {generateRandomTimeslots} from '../components/Preferences/CreatePreference';
 
 let DELAY = 1200;
 let START_TIMER = 60;
@@ -50,10 +48,11 @@ const lastRemainingAppliance = [];
 
 let MAX_ROUNDS = 3;
 
-const FairNegotations = (props) => {
+const FairNegotations = () => {
 
     let location = useLocation();
     let history = useHistory();
+
     let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
 
     const [auctionStarted, setAuctionStarted] = useState(false);
@@ -117,20 +116,8 @@ const FairNegotations = (props) => {
     const [userWinsRoundOne, setUserWinsRoundOne] = useState(false);
     const [userWinsNextRound, setUserWinsNextRound] = useState(false);
 
-    const [showSatisfactionForm, setShowSatisfactionForm] = useState(false);
-    const [theSatisfaction, setTheSatisfaction] = useState("");
-    const [satisfactionDescription, setSatisfactionDescription] = useState("");
-
     const [nextRoundPreferences, setNextRoundPreferences] = useState([]);
     const [userLost, setUserLost] = useState(false);
-
-
-    /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
 
     useEffect(() => {
         console.log(`Last round over ? ${lastRoundOver}`);
@@ -139,13 +126,6 @@ const FairNegotations = (props) => {
     const beginLiveAuctionHandler = function() {
         return setAuctionStarted(!auctionStarted);
     }
-
-    /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
 
     const handleCounterReset = () => {
         setTimerRunning(null);
@@ -212,6 +192,8 @@ const FairNegotations = (props) => {
             if(timeUp) { // if the time is up for round 1
                 return handleCounterReset();
             }
+
+
           };
 
           if(roundNumber === 1 && seconds === 0) {
@@ -239,7 +221,6 @@ const FairNegotations = (props) => {
               clearFields();
 
               if(roundTwoOver && clearedBids) {
-
                 return handleCounterReset();
 
               }
@@ -297,16 +278,8 @@ const FairNegotations = (props) => {
           return setAuctionChosen(!auctionChosen);
       };
 
-      
-
-      /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
-
       const fetchCreditData = async () => {
+
         try {
 
             return await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
@@ -315,7 +288,7 @@ const FairNegotations = (props) => {
                 setCreditsFetched(true);
 
                 if(!credits) {
-                    console.log(`Could not find any credit data`);
+                    alert("Could not find any credit data");
                 }
 
                 else {
@@ -325,29 +298,20 @@ const FairNegotations = (props) => {
             }).catch(error => {
 
                 if(error) {
-
-                     console.error(error.response.data);
                      throw new Error(error);
                 }
+
+
             })
         } 
         
         catch(error) {
 
             if(error) {
-                console.error(error);
-
                 throw new Error(error);
             }
         }
     }
-
-    /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
 
     const fetchUserBidData = async function() {
 
@@ -357,7 +321,6 @@ const FairNegotations = (props) => {
 
                     const allBids = response.data.bidData;
                     
-
                     if(!allBids) {
                         return alert(`Could not find any bid data`);
                     }
@@ -384,13 +347,6 @@ const FairNegotations = (props) => {
             }
       }
 
-     /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
-
       const fetchBotData = async function() {
 
           try {
@@ -409,7 +365,7 @@ const FairNegotations = (props) => {
                     setTimeout(() => {
                         alert(`You are not allowed to start bidding because no households to bid against are found`);
 
-                        return history.push('/');
+                        return history.push('/')
                     }, 2000)
 
                 }
@@ -420,7 +376,7 @@ const FairNegotations = (props) => {
 
                     for(let i = 0; i < theBotData.length - 1; i++) {
 
-                        const typesOfBots = theBotData[i].type;
+                        const typesOfBots = theBotData[i].type; // Get the bot type
 
                         if(!typesOfBots.includes(availableTypesOfBots[0]) && !typesOfBots.includes(availableTypesOfBots[1]) && !typesOfBots.includes(availableTypesOfBots[2])) {
 
@@ -447,22 +403,14 @@ const FairNegotations = (props) => {
           catch(error) {
 
             if(error) {
-
-                console.error(error);
                 throw new Error(error);
             }
 
           }
       }
 
-      /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
-
     const findMinBid = (minBid) => {
+
         try {
 
             let smallestBid = minBid;
@@ -473,6 +421,8 @@ const FairNegotations = (props) => {
                 if(currentBid <= smallestBid) {
                     smallestBid = currentBid;
                 }
+
+
             }
 
             setMinBidFound(true);
@@ -488,8 +438,6 @@ const FairNegotations = (props) => {
             if(error) {
 
                 setMinBidFound(false);
-                console.error(error);
-
                 throw new Error(error);
             }
         }
@@ -518,12 +466,6 @@ const FairNegotations = (props) => {
         return `Current Highest Bid ${maxBid}`;
     };
 
-      /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
 
     const countTotalBids = () => {
 
@@ -545,19 +487,10 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                console.error(error);
                 throw new Error(error);
             }
         }
     }
-
-      /**
-         * 
-         * @returns : null
-         * @method: submitBidHandler()
-         * @description: 
-         * @param: null
-         */
 
     const submitBidHandler = async (event) => {
 
@@ -588,29 +521,18 @@ const FairNegotations = (props) => {
         catch(error) {
 
             if(error) {
-                console.error(error);
                 throw new Error(error);
             }
         }
     }
 
-
     useEffect(() => {
 
     }, [bidSubmitted])
 
-     /**
-         * 
-         * @returns : null
-         * @method: performBid()
-         * @description: This function is responsible for fetching the Virtual Credits from the backend, looping through them using a for each loop, destructuring the opening bid and virtual credits aavailable
-         * @description: Finally, it invokes a routine called submit bid which sends off a POST request to the server to store the virtual credits entered by the user
-         * @param: null
-         */
-
     const performBid = async () => {
 
-        await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
+        return await axios.get(`http://localhost:5200/api/v1/credits/get-credits`).then(response => {
 
                 const theCreditData = response.data.allCredits;
 
@@ -622,9 +544,7 @@ const FairNegotations = (props) => {
                 }
 
                 return response.data.allCredits.forEach((creditVal) => {
-
                     const {openingBid, virtualCredits} = creditVal;
-
                     return submitBid(openingBid, virtualCredits);   
 
                 });
@@ -634,21 +554,10 @@ const FairNegotations = (props) => {
                 if(err) {
 
                     setCreditsFetched(false);
-                    console.error(err);
                     throw new Error(err);
                 }
             })
     }
-
-       /**
-         * 
-         * @returns : Returns true OR false depending on the outcome of the pre-condition
-         * @method: handleInvalidBidSubmission()
-         * @param: convertedBid: The parsed bid to an integer
-         * @param: convertedNextRoundBid: The parsed next round bid submitted by the user
-         * @param: virtualCredits: The number of virtual credits remaining
-         * @param: convertedLastRoundBid: The last round bid placed by the user
-         */
 
     const handleInvalidBidSubmission = function(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits) {
 
@@ -660,20 +569,11 @@ const FairNegotations = (props) => {
         catch(err) {
 
             if(err) {
-
-                console.error(err);
                 throw new Error(err);
             }
         }
 
     }
-
-    /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: nullkkkkiojoi
-         */
 
     const submitBid = async function(openingBid, virtualCredits) { // Submit Bid. Removed file again and submitting file
 
@@ -681,13 +581,11 @@ const FairNegotations = (props) => {
         const convertedLastRoundBid = parseInt(lastRoundBid);
 
         if(roundNumber === 1 || roundNumber === 2 || roundNumber === 3) {
-            
-
+        
             const convertedBid = parseInt(bid);
 
             if(handleInvalidBidSubmission(convertedBid, convertedNextRoundBid, convertedLastRoundBid, virtualCredits)) {
-                alert(`Insufficient Virtual Credits. Please bid again`); 
-                // Display modal to display insufficient credits
+                alert(`Insufficient Virtual Credits. Please bid again`);  // Display modal to display insufficient credits
                 return;   
             }
 
@@ -721,8 +619,6 @@ const FairNegotations = (props) => {
                  }).catch(error => {
  
                      if(error) {
-
-                        console.error(error);
                         throw new Error(error);
                      }
                  })
@@ -733,29 +629,13 @@ const FairNegotations = (props) => {
     
         } 
 
-
-        /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
-
-    function handleUserTurn() {
+    const handleUserTurn = () => {
         return setUserTurn(!userTurn);
     }
 
-    /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
-
-    function handleInputBlur() {
+    const handleInputBlur = () => {
         return setUserInputDisabled(true);
     }
-
   
     function handleBotTurn() {
         return setBotTurn(true);        
@@ -778,9 +658,7 @@ const FairNegotations = (props) => {
                 userCreditsLeft = {creditsLeft, openingBid};
                 openingBid = userCreditsLeft;
 
-            
                 return creditData.map((credit) => { // Loop through the credit data
-
                     const {_id} = credit; // Extract ID
                    
                      return updateNewBid(_id, virtualCredits, openingBid, lastRoundBid, nextRoundCredits);
@@ -792,13 +670,12 @@ const FairNegotations = (props) => {
                 return creditData.map((credit) => {
 
                  let nextRoundCreditsRemain = virtualCredits - convertedNextRoundBid;
-                 openingBid = userCreditsLeft;
+                 openingBid = userCreditsLeft; // Opening bid becomes all of the user available credits left
 
                 if(convertedBid > nextRoundCreditsRemain) {
                     alert(`You cannot place a bid > virtual credits available`);
-
                     window.location.reload(false);
-                }
+                  }
 
                     const {_id} = credit;
                     
@@ -834,17 +711,8 @@ const FairNegotations = (props) => {
 
             const {_id} = credit;
             return updateNewBid(_id, lastRoundCreditsRemain, virtualCredits);
-
-
         })
     }
-
-    /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
 
     const updateNewBid = function(_id, virtualCredits, openingBid, nextRoundCreditsRemain, lastRoundCreditsRemain) {
 
@@ -864,11 +732,12 @@ const FairNegotations = (props) => {
                if(err) {
 
                 const theErr = err.response.data;
-    
-                console.error(theErr);
-                    throw new Error(err);
+                throw new Error(theErr);
+
+
                 }
             }
+
         }
 
         if(roundNumber === 2) {
@@ -883,7 +752,6 @@ const FairNegotations = (props) => {
         }
 
         if(roundNumber === 3) {
-
             axios.put(`http://localhost:5200/api/v1/credits/update-credits/${_id}`, {_id: _id, virtualCredits: virtualCredits}).then(data => {console.log(data)}).catch(err => {console.log(err)});
           
             setUpdatedNewBid(true);
@@ -896,33 +764,18 @@ const FairNegotations = (props) => {
         if(roundNumber > MAX_ROUNDS) {
             alert(`No more rounds to process`)
         }
-      
+    
      } 
 
-     /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
 
      const processBotDataBeforeTurn = function(lowBotData, mediumBotData, intenseBotData, virtualcredits) {
-          
-       return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
+         return botPlaceRandomBid(lowBotData, mediumBotData, intenseBotData);
      }
 
-
    useEffect(() => {
-       
-       
+
    }, [lowBotWin, mediumBotWin, nextRoundForm, roundNumber, roundTwoOver, lastRoundForm, outOfCredits, biddingOver, userWinBid]);
 
-   /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
 
    const getVirtualCreditsRemaining = async function(theUserBid) {
 
@@ -937,7 +790,6 @@ const FairNegotations = (props) => {
            if(roundNumber === 2) {
 
             if(creditsAvailable === 0) {
-                
                 setOutOfCredits(true);
                 return;
             }
@@ -945,7 +797,6 @@ const FairNegotations = (props) => {
             if(theUserBid > creditsAvailable) {
                  return;
             }
-
 
            }
            
@@ -956,14 +807,6 @@ const FairNegotations = (props) => {
    useEffect(() => {
 
    }, [roundLost, userWinsRoundOne, userWinsNextRound, userTurn, userLost])
-
-
-   /**
-         * 
-         * @returns : Returns a string with the total number of bids enclosed by single quotes
-         * @method: countTotalBids()
-         * @param: null
-         */
 
     const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
 
@@ -1073,9 +916,9 @@ const FairNegotations = (props) => {
                           if(nextRoundBid > randBid && roundNumber === 2) {
 
                                 setTimeout(() => {
-                                    setModalShown({title: "Preferences", message: "No preferences found"});
 
-                                    setUserWinsNextRound(true);
+                              setModalShown({title: "Preferences", message: "No preferences found"});
+                              setUserWinsNextRound(true);
 
                               setRoundNumber(roundNumber + 1);
                               getNextAppliance();
@@ -1088,9 +931,9 @@ const FairNegotations = (props) => {
                                 }, 1000);
                                 
                             return;
+
                           }
 
-                    
                           if(theUserBid < randBid) {
                               
                               setRoundLost(!roundLost);
@@ -1159,10 +1002,10 @@ const FairNegotations = (props) => {
                             getNextAppliance();
 
                             return;
-                     }
+                       }
 
 
-                        }
+                         }
                       }
                 }
 
@@ -1186,6 +1029,7 @@ const FairNegotations = (props) => {
       
                                   convertedBotBid = mediumBotRandomBids;
                                   medBotCreditsRemain = {medCredsLeft};
+
                                   let medBotDifference = parsedMediumBotCredits - medBotCreditsRemain.medCredsLeft;
 
                                   if(nextRoundBid < mediumBotRandomBids) {
@@ -1262,7 +1106,7 @@ const FairNegotations = (props) => {
                                         if(mediumBotRandomBids !== 0 && !(userBid) < mediumBotRandomBids) {
 
                                              setModalShown({title: "Preferences", message: "No preferences found"});
-                                                setBiddingOver(true);
+                                            setBiddingOver(true);
 
                                                 setTimeout(() => {
                                                     
@@ -1277,10 +1121,10 @@ const FairNegotations = (props) => {
 
                                                 allBotData.push({...medBotCreditsRemain, medBotDifference, userCreditsLeft, userBid});
                                                 allTheBidsData = [...allBotData];
-                             
+                            
 
-                                           setMediumBotWin(!mediumBotWin); 
-                                           processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);                                         
+                                                 setMediumBotWin(!mediumBotWin); 
+                                                 processMediumBotBids(mediumBotRandomBids, name, type, mediumBotCreditsLeft);                                         
 
                                            getNextAppliance();
                                            setRoundNumber(roundNumber + 1);
@@ -1308,7 +1152,7 @@ const FairNegotations = (props) => {
                                     const {name, type, botCredits} = allIntenseBotData;
 
                                     if(!name || !type || !botCredits) {
-                                        console.log(`Could not find data`);
+                                        alert("Could not find the bot data")
                                     }
 
                                 let intenseBotBid = Math.floor(Math.random() * intenseBotBidAvg);
@@ -1331,7 +1175,6 @@ const FairNegotations = (props) => {
                                         setTimeout(() => {
                                            setModalShown(null);
                                         }, 3000);
-
 
                                     getNextAppliance();
                                     setRoundNumber(roundNumber + 1);
@@ -1403,8 +1246,6 @@ const FairNegotations = (props) => {
 
             if(error) {
                 const someErrMsg = error.message;
-                console.error(someErrMsg);
-
                 throw new Error(someErrMsg);
             }
       }
@@ -1415,15 +1256,6 @@ const FairNegotations = (props) => {
 
     }, [results]);
 
-
-        /**
-     * 
-     * @returns : String
-     * @method: findMaxBetween()
-     * @description: This function is used to find the maximum bid placed between the user and other households.
-     * @description: This routine deals with mutability. The maximum bid is stored in the variable maxBidBetween and is returned
-     * @param: null
-     */
 
     const findMaxBetween = function() {
 
@@ -1463,20 +1295,11 @@ const FairNegotations = (props) => {
        
     }, [lastApplianceSet])
 
-         /**
-         * 
-         * @returns : null
-         * @method: connectDB()
-         * @description: Asynchronous Function fetches the next and last appliance that has been submitted by the user. It loops through the end of an array after fetching the preferences using axios and sending a GET request.
-         * @description: It returns the last appliance by slicing the last index in the array and pushing it into another array
-         * @param: null
-         */
-
       const getNextAppliance = async () => {
 
         try {
      
-            await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+            return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
                let data = response.data.preferences;
 
                for(let i = 0; i < data.length - 1; i ++) {
@@ -1493,7 +1316,7 @@ const FairNegotations = (props) => {
 
                  if(nextApplianceData.indexOf(remainingAppliances[k]) === -1) {
                      return nextApplianceData.push(remainingAppliances[k]);
-                 }
+                  }
 
                 }
 
@@ -1559,8 +1382,6 @@ const FairNegotations = (props) => {
            }).catch(err => {
 
                if(err) {
-                   console.log(err);
-
                    throw new Error(err);
                }
            })
@@ -1604,9 +1425,6 @@ const FairNegotations = (props) => {
 
     const chosenSocialExchangeHandler = function() {
         setSocialExchangeChosen(!socialExchangeChosen);
-
-        // Social Exchange Algorithm
-        // 1. Call get random timeslots from the Create Preferences File
        
      }
 
@@ -1622,8 +1440,6 @@ const FairNegotations = (props) => {
             <button onClick = {chosenEnglishAuctionHandler} className = "auction--btn">Auction</button>
             <button onClick = {chosenSocialExchangeHandler} className = "social--btn">Social Exchange</button>
         </div>
-
-        {socialExchangeChosen ? <SocialExchange /> : null}
 
         {auctionChosen ?
 
@@ -1663,7 +1479,6 @@ const FairNegotations = (props) => {
             </div>
 
             })}
-
 
             <h1 style = {{marginBottom: '90px'}}>Round: {roundNumber}</h1>
 
@@ -1727,7 +1542,6 @@ const FairNegotations = (props) => {
             </form> 
 
         </RegisterCard>  
-
 
 </div>
 

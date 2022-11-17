@@ -15,18 +15,19 @@ import Header from '../../components/Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard.js'
 import './AdminRegister.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {motion, AnimatePresence} from 'framer-motion';
 
-const AdminRegister = (props) => { // Admin Register Props
+const AdminRegister = () => { // Admin Register Props
 
     let history = useHistory();
+
     const [enteredUsername, setUsername] = useState('');
     const [usernameValid, setUsernameValid] = useState(true);
-
     const [enteredEmail, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(true);
+
     const [enteredPassword, setPassword] = useState('');
     const [enteredConfirmPassword, setConfirmPassword] = useState('');
     const [formIsValid, setFormIsValid] = useState(true);
@@ -36,11 +37,13 @@ const AdminRegister = (props) => { // Admin Register Props
     }
 
     const registerHandler = async (event) => { // Method that validates and sends data to DB
+
         try {
 
             event.preventDefault();
 
             if(!validateInput) {
+
                 alert('Fields Cannot be left empty');
                 setUsernameValid(false);
                 setEmailValid(false);
@@ -53,10 +56,8 @@ const AdminRegister = (props) => { // Admin Register Props
                 setFormIsValid(false);
             }
 
-            const { data } = await axios.post(`http://18.132.71.197:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
-            console.log(data)
+            const { data } = await axios.post(`http://localhost:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
             alert('Account Registered success');
-
             return history.push('/home'); // Redirect home
         } 
         
@@ -75,7 +76,6 @@ const AdminRegister = (props) => { // Admin Register Props
 
     const invalidUsernameMsg = <p className = "err-msg">Invalid Username</p>
     const invalidEmailMsg = <p className = "err-msg">Invalid E-mail</p>
-    const invalidPasswordMsg = <p className = "err-msg">Invalid Password</p>
 
     return (
 
@@ -83,6 +83,8 @@ const AdminRegister = (props) => { // Admin Register Props
             <Header />
 
     <section className = "section--home">
+
+    
         <div className = "home--grid">
 
        <div className = "home-text-box">
@@ -112,6 +114,8 @@ const AdminRegister = (props) => { // Admin Register Props
         <motion.div exit = {{opacity: 0}} initial = {{opacity: 0}} animate = {{opacity: 1}}>
 
             <RegisterCard>
+
+
                 <h1 className = "heading--primary register">Admin Register</h1>
 
                 <form id = "admin--register-form" autoComplete = "false" onSubmit = {registerHandler} className = "register--form">
@@ -151,6 +155,8 @@ const AdminRegister = (props) => { // Admin Register Props
             
           </RegisterCard>
          </motion.div> 
+
+
           </AnimatePresence>
           
     </div>    
@@ -162,7 +168,9 @@ const AdminRegister = (props) => { // Admin Register Props
                     <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
                 </ul>
             </footer>
-                </Fragment>
+
+
+    </Fragment>
     )
 }
 

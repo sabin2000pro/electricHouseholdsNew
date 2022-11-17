@@ -17,22 +17,18 @@ import axios from 'axios';
 import {motion, AnimatePresence} from 'framer-motion';
 import './ContactHome.css';
 
-const CreateContact = (props) => {
+const CreateContact = () => {
    let history = useHistory();
 
    const [firstName, setFirstName] = useState('');
-   const [firstNameValid, setFirstNameValid] = useState(true);
    const [lastName, setLastName] = useState('');
-   const [lastNameValid, setLastNameValid] = useState(false);
    const [username, setUsername] = useState('');
-   const [usernameValid, setUsernameValid] = useState(false);
+
    const [emailAddress, setEmailAddress] = useState('');
    const [emailValid, setEmailValid] = useState(false);
    const [issueType, setIssueType] = useState('');
-   const [issueTypeValid, setIssueTypeValid] = useState(false);
    const [description, setDescription] = useState('');
    const [formValid, setFormValid] = useState(true);
-
    
    const contactUsHandler = async (e) => {
 
@@ -51,12 +47,13 @@ const CreateContact = (props) => {
             }
 
             const {data} = await axios.post(`http://localhost:5200/api/v1/contacts/create-contact`, {firstName: firstName, lastName: lastName, username: username, emailAddress: emailAddress, issueType: issueType, description: description});
-            
             setFormValid(true);
 
             setTimeout(() => {
                 return history.push('/home')
             }, 2000);
+
+            return data.data;
 
        } 
 
@@ -73,6 +70,7 @@ const CreateContact = (props) => {
 
     return (
             <Fragment>
+
                 <div className = "container grid grid--2-cols">
 
          <AnimatePresence>
@@ -114,6 +112,8 @@ const CreateContact = (props) => {
                 <option>Algorithms</option>
                 <option>Preferences</option>
             </select>
+
+
         </div>
 
         <div className = "description--box">
@@ -128,12 +128,14 @@ const CreateContact = (props) => {
         </form>
 
         </RegisterCard>
-        </motion.div>
-        </AnimatePresence>
+    </motion.div>
+</AnimatePresence>
 
 
     </div>    
-        </Fragment>
+ </Fragment>
+
+
     )
 }
 

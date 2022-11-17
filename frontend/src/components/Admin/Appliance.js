@@ -16,13 +16,15 @@ import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 
-const Appliance = (props) => {
+const Appliance = () => {
 
     let location = useLocation();
     const {name, image, description} = location.state.appliance;
     
     return (
     <Fragment>
+
+
         <Header />
 
         <section className = "section--home">
@@ -40,6 +42,8 @@ const Appliance = (props) => {
                     <img className = "home--img" alt = "Wind Turbing On The Main Webpage" src = {HomepageImg} />
                 </div>
             </div>
+
+
     </section>
 
     <section className = "section--login">
@@ -47,29 +51,31 @@ const Appliance = (props) => {
         <div className = "container grid grid--2-cols">
 
                 <RegisterCard>
-                    <h1 className = "heading--primary login">{name}</h1>
 
+                    <h1 className = "heading--primary login">{name}</h1>
                  
                  <div className = "login--form">
 
                     <img style = {{marginLeft: '250px', marginRight: '-150px'}} src = {image} width = "300" height = "280" />
-            
 
                     <div className = "applianceimage--box">
                         <h1 style = {{textAlign: 'center', marginLeft: '200px', color: 'white', fontSize: '32px'}}>{description}</h1>
                     </div>
-        </div>
+             </div>
                    
-                
+              
             </RegisterCard>
             
         </div>    
+
+
     </section>
 
     <footer className = "footer">
         <ul className = "footer--items">
             <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
         </ul>
+
     </footer>
 
 

@@ -9,13 +9,11 @@
  * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright.
  */
 
-
 const request = require('supertest');
 const mongoose = require('mongoose');
 const server = require('../server/server');
 
 beforeAll(async() => { // Test DB connection before the tests
-
     return await mongoose.connect("mongodb+srv://sabin2000:123mini123@cluster0.xcriw.mongodb.net/?retryWrites=true&w=majority");
 });
 
@@ -49,6 +47,7 @@ describe('Authentication Test Suite', () => {
     });
 
     test('Admin Register. Missing @ symbol. Should respond with a 500 Server Error', async () => {
+
         const invalidBodyData = [{emailAddress: "adminhotmail.com", username: "admin", password: "testadmin1230", confirmPassword: "testAdmin1230"}];
 
         for(const bodyData of invalidBodyData) {
@@ -56,7 +55,10 @@ describe('Authentication Test Suite', () => {
 
             return expect(response.statusCode).toBe(500);
         }
+
+
     });
+
 
     test('Admin Login - Invalid Password. Returns a 401 Unauthorized Code', async () => {
         const bodyData = [{emailAddress: "testadmin00@gmail.com", password: "afjdewjejf"}];
@@ -87,9 +89,11 @@ describe('Authentication Test Suite', () => {
         const applianceBodyData = [{name: "Washing Machine", description: "A Washing Machine"}];
 
         for(const data of applianceBodyData) {
-            const response = await request(server).post('/api/v1/appliances/create-appliance').send(data);
 
+            const response = await request(server).post('/api/v1/appliances/create-appliance').send(data);
             return expect(response.statusCode).toBe(201);
+
+
         } 
     });
 
@@ -104,12 +108,14 @@ describe('Authentication Test Suite', () => {
 
         for(const data of noContentData) {
             const response = await request(server).delete('/api/v1/bot/delete-bots').send(data);
-
             return expect(response.statusCode).toBe(204);
+
+
         }
     });
 
     test('Admin - Delete All Electrical Appliances. Should Return with 204 No Content Code', async () => {
+
         const noElectricalAppliances = [{}];
 
         for(const data of noElectricalAppliances) {
@@ -129,12 +135,20 @@ describe('Authentication Test Suite', () => {
         const response = await request(server).get('/api/v1/bids/fetch-bids', async () => {
             return expect(response.statusCode).toBe(200);
         })
+
     });
 
+
+    // Test to list all of the virtual credits
+
+
     test('List virtual credits. Should return with a 200 OK Status Code', async () => {
+
         const response = await request(server).get('/api/v1/credits/get-credits', async () => {
             return expect(response.statusCode).toBe(200);
         })
+
+
     });
 
 
@@ -156,9 +170,12 @@ describe('Authentication Test Suite', () => {
 
 })
 
+
+// Closing the DB connection allows Jest to exit successfully.
+
 afterAll(done => {
-    // Closing the DB connection allows Jest to exit successfully.
     mongoose.connection.close();
-    server.close(); // Close the connection to the server
+    server.close();
+    
     done();
   })
