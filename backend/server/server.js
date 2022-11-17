@@ -43,6 +43,7 @@ const sessionConfig = {
 const authRoutes = require('../routes/authRoutes');
 const bidRoutes = require('../routes/bidsRoutes');
 const applianceRoutes = require('../routes/applianceRoutes');
+
 const preferenceRoutes = require('../routes/preferencesRoutes');
 const timeslotRoutes = require('../routes/timeslotsRoutes');
 const commentRoutes = require('../routes/commentRoutes');
@@ -119,7 +120,7 @@ const server = app.listen(port, (err) => {
             return console.error(`Could not listen for requests : ${err}`);
         }
 
-        
+
     } 
     
     catch(error) { // Catch error if arises
@@ -127,7 +128,10 @@ const server = app.listen(port, (err) => {
         if(error) {
             return console.error(err);
         }
+
     }
+
+
 });
 
 // Handle server crashes
@@ -158,7 +162,6 @@ process.on('unhandledRejection', (error, promise) => {
 app.all('*', (request, response, next) => {
 
     if(request.method === 'GET') {
-        
         response.status(404).json({status: 'Fail', message: 'The route you requested is not valid'});
         return next();
     }
