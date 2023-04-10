@@ -13,21 +13,21 @@
 import React, {Fragment, useState} from 'react';
 import Header from '../Header';
 import './AdminBidsSettings.css';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 import axios from 'axios';
 
 const AdminBidsSettings = () => {
 
-    let history = useHistory();
+    const navigate = useNavigate();
     const [enteredOpeningBid, setEnteredOpeningBid] = useState('');
     const [enteredVirtualCredits, setEnteredVirtualCredits] = useState('');
-    const [formValid, setFormValid] = useState(true);
+    const [formValid, setFormValid] = useState(false);
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
-        history.push('/admin-login'); // Redirect to Login
+        navigate('/admin-login')
         
         return window.location.reload(false);
     }
@@ -64,8 +64,9 @@ const AdminBidsSettings = () => {
         }
     }
    
-
     return (
+
+
         <Fragment>
 
             <Header />
@@ -83,6 +84,7 @@ const AdminBidsSettings = () => {
         <div className = "home-img-box">
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
+        
     </div>
 
     </section>

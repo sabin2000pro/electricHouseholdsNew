@@ -81,20 +81,20 @@ const Header = () => { // Header Component
 
              <FaSearch className = "search--icon" />
 
-             <input className = "admin--search" type = "text" placeholder = "Search Appliances" onChange = {(event) => {setSearchTerm(event.target.value)}} />
+                <input className = "admin--search" type = "text" placeholder = "Search Appliances" onChange = {(event) => {setSearchTerm(event.target.value)}} />
 
            
             </div>
 
             <nav className = "main-nav">
-                    <ul className = "main-nav--list">
+
+                     <ul className = "main-nav--list">
 
                         <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard">Admin Dashboard</a></li>
                         <li><a className = "main-nav--link" href = "/electricHouseholds/api/v1/auth/client/admin-dashboard/create-appliance">Create Appliance</a></li>
                         <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard/credit-settings">Credit Settings</a></li>
-                        <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard/api/v1/bot-settings">Bot Settings</a></li>
-                        
-                </ul>
+                        <li><a className = "main-nav--link" href = "/electricHouseholds/admin-dashboard/api/v1/bot-settings">Bot Settings</a></li>    
+                   </ul>
             </nav>
 
             </header>) : (<header className = "header">

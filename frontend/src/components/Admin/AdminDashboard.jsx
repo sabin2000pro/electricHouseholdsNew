@@ -11,7 +11,7 @@
 
 
 import React, {useState, useEffect, Fragment} from 'react';
-import {useHistory, Link} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import Header from '../Header';
 import '../Preferences/CreatePreference.css';
 import './AdminDashboard.css';
@@ -22,7 +22,7 @@ import Modal from '../../UI/Modal';
 
 const AdminDashboard = () => { // Admin Dashboard Component
     
-    let history = useHistory();
+    const navigate = useNavigate();
     const [appliances, setAppliances] = useState([]);
     const [appliancesFetched, setAppliancesFetched] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -37,6 +37,7 @@ const AdminDashboard = () => { // Admin Dashboard Component
     }, [appliancesPresent])
 
     const fetchApplianceData = async () => { // Routine to fetch the available appliances from the backend database
+
         try {
             
            return await axios.get(`http://localhost:5200/api/v1/appliances/fetch-appliances`).then(response => {
@@ -48,9 +49,9 @@ const AdminDashboard = () => { // Admin Dashboard Component
                }
 
                if(allAppliances.length !== 0) {
+
                     setAppliances(allAppliances);
                     setAppliancesFetched(!appliancesFetched);
-
                     setAppliancesPresent(appliancesPresent)
                }
 
@@ -73,13 +74,13 @@ const AdminDashboard = () => { // Admin Dashboard Component
         if(!localStorage.getItem("authToken")) { // If there's no authorization token
 
             alert('You are not authorized to view this route. You are not logged in');
-            return history.push('/home');
+            return navigate('/')
         }
     }
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
-        history.push('/admin-login'); // Redirect to Login
+        navigate('/admin-login')
         
         return window.location.reload(false);
     }
@@ -87,7 +88,6 @@ const AdminDashboard = () => { // Admin Dashboard Component
     const deleteAppliance = (id) => {
 
         try {
-
             axios.delete(`http://localhost:5200/api/v1/appliances/delete-appliance/${id}`, {id: id});
             alert('Appliance Deleted');
         } 
@@ -124,6 +124,8 @@ const AdminDashboard = () => { // Admin Dashboard Component
         <div className = "home-img-box">
             <img className = "home--img" alt = "Wind Turbine" src = {HomepageImg} />
         </div>
+
+        
     </div>
 
     </section>

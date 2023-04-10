@@ -12,7 +12,7 @@
 
 /* eslint-disable no-loop-func */
 import React, {useState, useEffect, useRef} from 'react';
-import {useLocation, useHistory} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import RegisterCard from './Admin/RegisterCard';
 import axios from 'axios';
 import './FairNegotiations.css';
@@ -51,7 +51,7 @@ let MAX_ROUNDS = 3;
 const FairNegotations = () => {
 
     let location = useLocation();
-    let history = useHistory();
+    const navigate = useNavigate();
 
     let {username, appliance, firstPreference, secondPreference, thirdPreference, nextAppliance, lastAppliance} = location.state.preference;
 
@@ -354,7 +354,6 @@ const FairNegotations = () => {
             return await axios.get(`http://localhost:5200/api/v1/bot/get-bots`).then(response => {
 
                 let availableTypesOfBots = [botTypes.LOW, botTypes.MEDIUM, botTypes.INTENSE];
-                let redirectPath = '/your-preferences';
 
                 const theBotData = response.data.allBots;
                 const botDataLength = response.data.allBots.length;
@@ -365,7 +364,7 @@ const FairNegotations = () => {
                     setTimeout(() => {
                         alert(`You are not allowed to start bidding because no households to bid against are found`);
 
-                        return history.push('/')
+                        return navigate('/');
                     }, 2000)
 
                 }
@@ -382,7 +381,7 @@ const FairNegotations = () => {
 
                             return setTimeout(() => {
                                 alert(`We could not find any Households. Sorry for the inconvenience`);
-                                return history.push(redirectPath);
+                                return navigate('/')
                             }, 2000)
 
                         }
@@ -416,12 +415,12 @@ const FairNegotations = () => {
             let smallestBid = minBid;
 
             for(let i = 0; i < bidData.length; i++) { // Loop through the bids
+
                 const currentBid = bidData[i].bid;
     
                 if(currentBid <= smallestBid) {
                     smallestBid = currentBid;
                 }
-
 
             }
 

@@ -11,17 +11,17 @@
 
 
 import React, {Fragment, useState} from 'react';
-import Header from '../../components/Header';
+import Header from '../Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard.js'
 import './AdminRegister.css';
-import { Link, useHistory} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {motion, AnimatePresence} from 'framer-motion';
 
 const AdminRegister = () => { // Admin Register Props
 
-    let history = useHistory();
+    const navigate = useNavigate();
 
     const [enteredUsername, setUsername] = useState('');
     const [usernameValid, setUsernameValid] = useState(true);
@@ -58,7 +58,7 @@ const AdminRegister = () => { // Admin Register Props
 
             const { data } = await axios.post(`http://localhost:5200/api/v1/auth/register-admin`, {username: enteredUsername, emailAddress: enteredEmail, password: enteredPassword, confirmPassword: enteredConfirmPassword});
             alert('Account Registered success');
-            return history.push('/home'); // Redirect home
+            return navigate('/home')
         } 
         
         catch(err) {

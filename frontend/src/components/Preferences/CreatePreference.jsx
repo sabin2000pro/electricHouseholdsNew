@@ -104,7 +104,6 @@ const CreatePreference = () => {
             }
 
             else if(chosenSecondPreference === chosenThirdPreference) {
-
                 setFormValid(false);
                 setShowForm(false);
                 return setModalShown({title: 'Preference Error', message: "Invalid Second Preference"});
@@ -168,8 +167,7 @@ const CreatePreference = () => {
             });
      
             return await axios.post(`http://localhost:5200/api/v1/preferences/create-preference`, {appliance: firstApplianceData[0], nextAppliance: nextApplianceData[0] , lastAppliance: lastAppliancePost.name, firstPreference: chosenFirstPreference, secondPreference: chosenSecondPreference , thirdPreference: chosenThirdPreference, day: dayChosenByUser}).then(response => {
-            
-            console.log(response.data.data);
+    
 
                 setModalShown({title: 'Your Preferences', message: `You have submitted your preference for ${firstApplianceData[0]} - now submit preferences for ${nextApplianceData[0]}`, showForm: false, showDefaultBtn: true});
     
@@ -215,8 +213,7 @@ const CreatePreference = () => {
 
         }
 
-      
-        
+
     }
     
     const modalHandler = () => {
@@ -225,7 +222,6 @@ const CreatePreference = () => {
 
     useEffect(() => {
         return fetchAllAppliances();
-
     }, []);
 
     useEffect(() => {
@@ -330,7 +326,6 @@ const CreatePreference = () => {
                                    });
 
                                     for(let z = 0; z < lastApplianceData.length - 1; z++) {
-                                   
                                         const lastApplianceAvailable = lastApplianceData[z]
                                         newLastAppliance.push(lastApplianceAvailable);                                 
                                     }
@@ -431,7 +426,6 @@ const CreatePreference = () => {
         
             if(error) {
                 const stack = error.stack
-
                 console.log(stack);
             }
         }
@@ -478,7 +472,7 @@ const CreatePreference = () => {
 
     const commentFormHandler = async (event) => {
         try {
-            // Prevent form resubmission
+
             event.preventDefault();
 
             if(!validateCommentTitle()) {
@@ -508,10 +502,10 @@ const CreatePreference = () => {
 
        <Fragment>
 
-           <section className = "section--yourpreferences">
+    <section className = "section--yourpreferences">
 
            <div className = "container grid grid--2-cols">
-           {modalShown && <Modal onClick = {modalHandler} showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} changeHandler = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commTitle = {modalShown.commTitle} username = {modalShown.username} reason = {modalShown.reason} description = {modalShown.description} /> }
+             {modalShown && <Modal onClick = {modalHandler} showSubmitBtn = {modalShown.showSubmitBtn} showDefaultBtn = {modalShown.showDefaultBtn} changeHandler = {commentInputsHandler} onBtnClick = {modalHandler} onSubmitBtnClick = {commentFormHandler} showInputs = {modalShown.showInputs} title = {modalShown.title} message = {modalShown.message} commTitle = {modalShown.commTitle} username = {modalShown.username} reason = {modalShown.reason} description = {modalShown.description} /> }
 
         <RegisterCard>
             <h1 className = "heading--primary login">{DEFAULT_TEXT.preferenceHeader}</h1>
