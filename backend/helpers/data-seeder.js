@@ -12,8 +12,8 @@
  * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
  */
 
-const fs = require('fs');
 require('dotenv').config();
+const fs = require('fs');
 const Timeslots = require('../models/timeslotsModel');
 const Admin = require('../models/adminModel');
 const Appliance = require('../models/applianceModel');
@@ -76,9 +76,9 @@ const removeData = async () => {
 }
 
 if(process.argv[2] === '--import') {
-    return importData();
+ importData();
 }
 
 if(process.argv[2] === '--remove') {
-    return removeData();
+    removeData();
 }
