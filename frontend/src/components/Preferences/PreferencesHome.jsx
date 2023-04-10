@@ -19,7 +19,10 @@ import './CreatePreference.css';
 const PreferencesHome = () => {
 
         return (
-            <Fragment>
+
+        
+         <Fragment>
+
              <Header />
                 
         <section className = "section--home">
@@ -48,9 +51,12 @@ const PreferencesHome = () => {
 
 
     <footer className = "footer">
+
         <ul className = "footer--items">
             <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2022</li>
         </ul>
+
+        
     </footer>
 
    

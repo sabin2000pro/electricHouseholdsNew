@@ -860,6 +860,7 @@ const FairNegotations = () => {
 
                        const userBidVal = bidData[k].bid;
                        const lastUserBid = bidData[k].lastRoundBid;
+        
                        const theUserBid = parseInt(userBidVal);
 
                       getVirtualCreditsRemaining(theUserBid);
@@ -1300,6 +1301,7 @@ const FairNegotations = () => {
         try {
      
             return await axios.get(`http://localhost:5200/api/v1/preferences/fetch-preferences`).then(response => {
+                
                let data = response.data.preferences;
 
                for(let i = 0; i < data.length - 1; i ++) {
@@ -1470,6 +1472,7 @@ const FairNegotations = () => {
             {modalShown && roundNumber === 1 ? <Modal title = "Round Winner" message = {findMaxBetween()} /> : null}
 
             {creditData.map((credit, key) => {
+
                 const credits = credit;
 
                 return <div key = {key}>
@@ -1496,13 +1499,11 @@ const FairNegotations = () => {
 
             {roundNumber === 2 && userInputDisabled && roundNumber !== 3 && !roundTwoOver ? 
                 <input value = {nextRoundBid} onChange = {(event) => {setNextRoundBid(event.target.value)}} placeholder = "Enter Round Bid" id = "bid" type = "text"/>
-        
             :
         
             <input value = {lastRoundBid} onChange = {(event) => {setLastRoundBid(event.target.value)}} placeholder = "Enter Round Bid" id = "bid" type = "text" /> }
 
         </div>
-
 
         <div className = "submit-bid--container">
             <button className = "login--btn">Submit</button>

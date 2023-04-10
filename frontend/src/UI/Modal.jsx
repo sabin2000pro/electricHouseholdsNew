@@ -7,8 +7,8 @@ const Modal = (props) => {
     return (
 
         <div className = "backdrop" onClick = {props.onClick}>
-            <ModalCard className = "modal">
-            <header className = "modal__header">
+           <ModalCard className = "modal">
+           <header className = "modal__header">
         <h2>{props.title}</h2>
         
     </header>
@@ -18,6 +18,7 @@ const Modal = (props) => {
     </div>
 
     <div>
+
         <form onSubmit = {props.onSubmitBtnClick}>
             <div className = "title__container">
 
@@ -37,18 +38,19 @@ const Modal = (props) => {
             </div>
 
             <div className = "reason__container">
+
                 <label htmlFor = "reason">{props.reason}</label>
                 {props.showForm && undefined}
                 {props.showInputs && <input type = "text" onChange = {(event) => {props.changeHandler(event)}} />}
             </div>
 
             <div className = "description__container">
+
                 <label htmlFor = "description">{props.description}</label>
                 {props.showForm && undefined}
                 {props.showInputs && <input type = "text"  onChange = {(event) => {props.changeHandler(event)}} />}
             </div>
-
-
+            
         </form>
 
     </div>

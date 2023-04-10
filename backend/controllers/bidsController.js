@@ -19,7 +19,6 @@ const badRequest = 400;
 const notFound = 404;
 
 module.exports.getAllBids = catchAsync(async (request, response, next) => {
-    
      const bidData = await Bid.find();
      return response.status(ok).json({bidData});
 });

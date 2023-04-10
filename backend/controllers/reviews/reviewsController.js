@@ -8,10 +8,12 @@ const notFound = 404;
 const serverError = 500;
 
 module.exports.fetchAllReviews = catchAsync(async(request, response, next) => {
+
     if(request.method === 'GET') {
        const allReviews = await Review.find();
        return response.status(ok).json({allReviews});
     }
+    
 });
 
 module.exports.fetchReviewByID = catchAsync(async (request, response, next) => {

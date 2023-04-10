@@ -56,7 +56,7 @@ const satisfactionRoutes = require('../routes/satisfactionRoutes');
 
 connectDatabase();
 
-// 1. Set up middleware
+// 1. Set upmiddleware
 
 app.use(cors({
     origin: "*",

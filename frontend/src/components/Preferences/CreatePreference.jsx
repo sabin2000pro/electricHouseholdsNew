@@ -10,7 +10,6 @@
  */
 
 
-
 /* eslint-disable no-lone-blocks */
 import React, {useState, Fragment, useEffect} from 'react';
 import './CreatePreference.css';
@@ -545,11 +544,11 @@ const CreatePreference = () => {
 
             {preferenceSubmitted && !firstApplianceFound && !lastPrefSubmitted ? lastApplianceData.map((last, key) => {
 
-    return <div key = {key}>
+            return <div key = {key}>
 
-    <label className = "issue--lbl" htmlFor = "issue">Select Preferences For : {last.name}</label>
+            <label className = "issue--lbl" htmlFor = "issue">Select Preferences For : {last.name}</label>
 
-    </div>
+            </div>
 
     }) : null} 
 
@@ -600,9 +599,10 @@ const CreatePreference = () => {
 
         <div className = "afternoon--box">
 
-            <label className = "password--lbl">Third Preference</label>
+             <label className = "password--lbl">Third Preference</label>
 
             <select onChange = {(e) => {setChosenThirdPreference(e.target.value)}} value = {chosenThirdPreference} className = "box">
+
                 <option>06:00-07:00</option>
                 <option>07:00-08:00</option>
                 <option>09:00-10:00</option>
@@ -616,6 +616,7 @@ const CreatePreference = () => {
                 <option>00:00-01:00</option>
                 <option>02:00-03:00</option>
                 <option>04:00-05:00</option>
+
             </select>
 
         </div>

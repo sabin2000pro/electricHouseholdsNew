@@ -5,6 +5,7 @@
   "private": false,
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
+    "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -16,10 +17,12 @@
     "npm": "^8.3.0",
     "react-animated-dots": "^1.1.0",
     "react-bootstrap": "^0.32.4",
+    "react-redux": "^8.0.5",
     "react-router": "^6.2.1",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.0",
     "reactjs-popup": "^2.0.5",
+    "redux": "^4.2.1",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

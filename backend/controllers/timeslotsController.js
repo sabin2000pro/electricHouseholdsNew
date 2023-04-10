@@ -17,8 +17,8 @@ const created = 201;
 module.exports.createTimeslot = catchAsync(async(request, response, next) => {
 
    const {earlyMorningSlots, lateMorningSlots, afternoonSlots, eveningSlots, otherHouseholdsRandom} = request.body
-
    const newTimeslot = new Timeslots({earlyMorningSlots, lateMorningSlots, afternoonSlots, eveningSlots, otherHouseholdsRandom});
+   
    await newTimeslot.save();
    return response.status(created).json({newTimeslot});
    

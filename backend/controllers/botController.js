@@ -11,10 +11,7 @@
 
 const Bot = require('../models/botModel');
 const catchAsync = require('../utils/catchAsync');
-const ok = 200;
-const created = 201;
-const noContent = 204;
-const notFound = 404;
+
 
 module.exports.getAllBots = catchAsync(async(request, response, next) => {
     const allBots = await Bot.find();
@@ -27,11 +24,11 @@ module.exports.getSingleBot = catchAsync(async(request, response, next) => {
         const id = request.params.id;
         const bot = await Bot.findById(id);
 
-        return response.status(ok).json({bot});
+        return response.status(200).json({success: true, bot});
     }
 
     if(!bot) {
-        return response.status(notFound).json({status: "Fail", message: 'Bot not found'});
+        return response.status(200).json({success: false, message: 'Bot not found'});
     }
 
 });
@@ -50,12 +47,10 @@ module.exports.createBot = catchAsync(async (request, response, next) => {
 
 module.exports.editBot = catchAsync(async (request, response, next) => {
     const id = request.params.id;
+    const editedBot = await Bot.findByIdAndUpdate(id, request.body, {new: true, runValidators: true});
+    await editedBot.save();
 
-    if(request.method === 'PUT') {
-       const editedBot = await Bot.findByIdAndUpdate(id, request.body, {new: true, runValidators: true});
-       await editedBot.save();
-    }
-
+    return response.status(200).json({success: true, message: "Bot Updated"});
 });
 
 module.exports.deleteBot = catchAsync(async (request, response, next) => {

@@ -18,11 +18,11 @@ import BotSettings from './components/AIBot/BotSettings';
 import ResultsScreen from './components/ResultsScreen';
 import AdminBidsSettings from './components/Admin/AdminBidsSettings';
 
-const App = () => { // Trying to add the permissions.. ADDING URL ROUTES. Added a proxy for the backend when deployed. Please work . APP COMPONENT
+const App = () => {
 
   return (
     
-    <div className = "App">
+  <div className = "App">
 
     <BrowserRouter basename= '/electricHouseholds'>
     

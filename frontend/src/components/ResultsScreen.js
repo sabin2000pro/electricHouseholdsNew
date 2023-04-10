@@ -35,7 +35,7 @@ const ResultsScreen = (props) => { // The results screen that shows the results 
   }, [detailsShown])
 
   const startNextRound = () => {
-      return window.open("https://twitter.com/saigowthamr/");
+    
   }
 
   return <Fragment>

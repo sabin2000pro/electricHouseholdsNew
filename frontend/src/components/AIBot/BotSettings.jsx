@@ -17,7 +17,7 @@ import Header from '../Header';
 import './BotSettings.css'
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import axios from 'axios';
-import Modal from './../../UI/Modal';
+import Modal from '../../UI/Modal';
 
 const BotSettings = () => {
 
