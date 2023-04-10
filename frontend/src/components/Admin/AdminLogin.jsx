@@ -11,7 +11,7 @@
 
 
 import React, {useState, useEffect, Fragment} from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './AdminLogin.css';
 import Header from '../Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
@@ -20,7 +20,7 @@ import axios from 'axios';
 import Modal from '../../UI/Modal';
 
 const AdminLogin = () => { // Admin Login Component. Adding comments and updating permissions /// Addingf more core aaa. Added headers on the backend
-    let history = useHistory();
+    const navigate = useNavigate();
 
     const [enteredEmail, setEmailAddress] = useState('');
     const [emailValid, setEmailValid] = useState(true);
@@ -38,7 +38,7 @@ const AdminLogin = () => { // Admin Login Component. Adding comments and updatin
     const checkToken = (authToken) => { // Verifies the authentication token
 
          if(authToken) { // if there is one already present
-             return history.push('/admin-dashboard');
+             return navigate('/admin-dashboard')
          }
     }
 
@@ -95,7 +95,7 @@ const AdminLogin = () => { // Admin Login Component. Adding comments and updatin
             }
 
             else {
-                return history.push('/admin-dashboard');
+                return navigate('/admin-dashboard');
             }
           
         }   
@@ -172,14 +172,16 @@ const AdminLogin = () => { // Admin Login Component. Adding comments and updatin
                     </form>
                 
             </RegisterCard>
-            
-        </div>    
+        </div>
+
     </section>
 
         <footer className = "footer">
+
                 <ul className = "footer--items">
                     <li className = "footer--item">Copyright All Rights Reserved - eHouseholds Sabin Constantin Lungu - 2021</li>
                 </ul>
+                
         </footer>
 
     </Fragment>
