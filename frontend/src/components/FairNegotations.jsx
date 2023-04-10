@@ -807,7 +807,7 @@ const FairNegotations = () => {
 
    }, [roundLost, userWinsRoundOne, userWinsNextRound, userTurn, userLost])
 
-    const botPlaceRandomBid = async function(lowBotData, mediumBotData, intenseBotData) {
+    const botPlaceRandomBid = async (lowBotData, mediumBotData, intenseBotData) => {
 
         try {
 
@@ -1130,6 +1130,7 @@ const FairNegotations = () => {
                                            setRoundNumber(roundNumber + 1);
 
                                           return;
+
                                            }
            
                                           }, 4500)
@@ -1426,7 +1427,6 @@ const FairNegotations = () => {
 
     const chosenSocialExchangeHandler = function() {
         setSocialExchangeChosen(!socialExchangeChosen);
-       
      }
 
     return (
