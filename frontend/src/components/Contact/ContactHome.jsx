@@ -11,7 +11,7 @@
 
 
 import React, {Fragment} from 'react';
-import Header from '../../components/Header';
+import Header from '../Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 import './ContactHome.css'
 import CreateContact from './CreateContact';
@@ -24,7 +24,7 @@ const ContactHome = () => { // Contact Us Home Page
 
          <Header />
 
-    <section className = "section--home">
+     <section className = "section--home">
         <div className = "home--grid">
 
            <div className = "home-text-box">

@@ -10,7 +10,7 @@
  */
 
 import React, {useState, Fragment} from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from '../Header';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
@@ -24,28 +24,28 @@ const AdminCreateAppliance = (props) => {
     const [enteredImage, setEnteredImage] = useState('');
 
     const [enteredDescription, setEnteredDescription] = useState('');
-    let history = useHistory();
+    const navigate = useNavigate();
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
-        return history.push('/home'); // Redirect user  back home. Adding more dependneices
+        return navigate('/home')
     }
 
-    function redirectHome() {
+    const redirectHome = () => {
 
         return setTimeout(() => {
-            return history.push('/admin-dashboard');
+
+            return navigate('/admin-dashboard')
             
         }, REDIRECT_SECONDS);
 
     }
 
-    const createApplianceSubmitHandler = async (e) => {
+    const createApplianceSubmitHandler = async (event) => {
 
         try {
 
-            e.preventDefault();
-            
+            event.preventDefault();
             const {data} = await axios.post(`http://localhost:5200/api/v1/appliances/create-appliance`, {name: enteredName, image: enteredImage, description: enteredDescription});
             return redirectHome();
         } 

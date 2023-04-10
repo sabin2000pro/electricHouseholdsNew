@@ -14,6 +14,7 @@ const ErrorResponse = require('../utils/errorResponse');
 const catchAsync = require('../utils/catchAsync');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
+const {StatusCodes} = require('http-status-codes');
 
 const ok = 200;
 const created = 201;
@@ -29,12 +30,11 @@ module.exports.registerAdmin = catchAsync(async (request, response, next ) => {
     const {username, emailAddress, password, confirmPassword} = request.body;
 
     if(!username || !emailAddress || !password || !confirmPassword) {
-        return response.status(badRequest).json({status: 'Fail', message: 'Please check your entries'})
+        return response.status(badRequest).json({success: false, message: "Check your register entries"})
     }
 
     const newAdmin = new Admin({username, emailAddress, password, confirmPassword});
     await newAdmin.save();
-    // Send E-mail After Registration
 
     return sendToken(newAdmin, created, response); // Send the JWT Token
 });
@@ -131,7 +131,7 @@ module.exports.resetAdminPassword = catchAsync(async (request, response, next) =
 
         updateFields(admin, password);
         await admin.save(); 
-        return response.status(200).json({success: true, data: "Password Reset Success"});
+        return response.status(StatusCodes.OK).json({success: true, data: "Password Reset Success"});
         
 });
 
@@ -169,7 +169,7 @@ module.exports.deleteAdminAccount = catchAsync(async (request, response, next) =
         }
     
         await Admin.findByIdAndDelete(id);
-        return response.status(204).json("Admin Account Deleted");
+        return response.status(StatusCodes.NOC_).json("Admin Account Deleted");
     }   
 
 });

@@ -11,7 +11,7 @@
 
 
 import React, { Fragment} from 'react';
-import Header from '../../components/Header';
+import Header from '../Header';
 import HomepageImg from '../../components/images/homepage/homepageimg.jpg';
 
 const AlgorithmsHome = () => {

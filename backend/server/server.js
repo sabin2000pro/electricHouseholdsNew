@@ -9,10 +9,10 @@
  * Any unauthorised broadcasting, public performance, copying or re-recording will constitute an infringement of copyright
  */
 
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors= require("cors");
-require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const xss = require('xss-clean');
 const hpp = require('hpp')

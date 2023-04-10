@@ -11,15 +11,14 @@
 
 import React, {Fragment, useState, useEffect} from 'react'
 import Header from '../Header';
-import {useHistory, useLocation} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import HomepageImg from '../images/homepage/homepageimg.jpg';
 import RegisterCard from './RegisterCard';
 import axios from 'axios';
 
-const AdminEditAppliance = (props) => {
-    let history = useHistory();
+const AdminEditAppliance = () => {
+    const navigate = useNavigate();
     let location = useLocation();
-    
     const {_id} = location.state.appliance;
 
     const [newDescription, setEditedDescription] = useState('');
@@ -27,9 +26,8 @@ const AdminEditAppliance = (props) => {
 
     const logoutHandler = () => { // Logout Handler Function to logout admins
         localStorage.removeItem("authToken"); // Remove auth token from local storage
-        return history.push('/admin-login'); // Redirect to Login
-        
-        return window.location.reload(false);
+        navigate('/admin-login'); // Redirect to Login
+        window.location.reload(false);
     };
 
     useEffect(() => {
@@ -69,10 +67,9 @@ const AdminEditAppliance = (props) => {
         try {
 
         return axios.put(`http://localhost:5200/api/v1/appliances/edit-appliance/${id}`, {id: id, newDescription: newDescription}).then(data => {
-              return history.push('/home');
+              navigate('/home')
           });
-
-
+          
         } 
         
         catch(error) {

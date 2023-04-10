@@ -103,6 +103,7 @@ const CreateContact = () => {
         </div>
 
         <div className = "issueType--box">
+
         <label className = "issue--lbl" htmlFor = "issue">Issue Type</label>
 
             <select value = {issueType} onChange = {(e) => {setIssueType(e.target.value)}} id = "issuetype" className = "box">
@@ -129,6 +130,8 @@ const CreateContact = () => {
 
         </RegisterCard>
     </motion.div>
+
+    
 </AnimatePresence>
 
 
