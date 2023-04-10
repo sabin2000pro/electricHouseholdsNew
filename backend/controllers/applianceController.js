@@ -11,15 +11,11 @@
 
 const Appliance = require('../models/applianceModel');
 const catchAsync = require('../utils/catchAsync');
-const ok = 200;
-const created = 201;
-const noContent = 204;
-const notFound = 404;
-const badRequest = 400;
+const {StatusCodes} = require('http-status-codes')
 
 module.exports.getAllAppliances = catchAsync(async (request, response, next) => {
     const appliances = await Appliance.find();
-    return response.status(ok).json({appliances}); // Return all the appliances in JSON format
+    return response.status(StatusCodes.OK).json({appliances}); // Return all the appliances in JSON format
 });
 
 module.exports.createAppliance = catchAsync(async (request, response, next) => {
